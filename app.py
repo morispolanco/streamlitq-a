@@ -1,30 +1,27 @@
+
 import streamlit as st
 import requests
 import json
+import pandas as pd
+import numpy as np
+import time
+import os
+import re
 
-st.title("GPT-3 Chat App")
+OPENAPI_KEY = os.environ['OPENAI_API_KEY']
 
-st.write("""
+# st.title('GPT-3 Q&A')
 
-This is a simple chat app to showcase the API capabilities of GPT-3.
+# st.write('This is a demo of the GPT-3 API. It is a simple Q&A app that uses the GPT-3 API to answer questions.')
 
-""")
+# st.write('The GPT-3 API is a language model that uses machine learning to produce human-like text. It is the third version of OpenAI\'s Generative Pre-trained Transformer (GPT) language model. GPT-3 is trained on a dataset of hundreds of billions of words from the internet.')
 
-user_prompt = st.text_input("Enter your message:")
+# st.write('The GPT-3 API is currently in private beta. You can apply for access to the API [here](https://beta.openai.com/).')
 
-if st.button("Submit"):
-    response = requests.post(
-        "https://api.openai.com/v1/engines/davinci/completions",
-        data=json.dumps({
-            "prompt": user_prompt,
-            "max_tokens": 50,
-            "temperature": 0.7,
-            "top_p": 0.9,
-        }),
-        headers={
-            "Content-Type": "application/json",
-            "Authorization": "OPENAI.API_KEY",
-        },
-    )
-    response = response.json()
-    st.write(response["choices"][0]["text"])
+# st.write('This app is built using Streamlit. You can find the source code [here](https://github.com/streamlit/demo-uber-nyc-pickups/blob/master/app.py).')
+
+# st.write('You can find more information about GPT-3 [here](https://openai.com/blog/openai-api/).')
+
+# st.write('You can find more information about Streamlit [here](https://www.streamlit.io/).')
+
+# st.write('You can find more information about the GPT-3 API [here](https://beta.openai.com/).')
