@@ -10,7 +10,7 @@ url = "https://api.openai.com/v1/engines/davinci/completions"
 
 headers = {
     'Content-Type': 'application/json',
-    'Authorization': 'Bearer ' + OPENAI.API_KEY
+    'Authorization': 'Bearer ' + ["OPENAI.API_KEY"]
 }
 
 data = {
