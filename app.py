@@ -2,31 +2,29 @@ import streamlit as st
 import requests
 import json
 
-st.title("GPT-3 Q&A")
+st.title("GPT-3 Chat App")
 
-prompt = st.text_input("Prompt")
+st.write("""
 
-url = "https://api.openai.com/v1/engines/davinci/completions"
+This is a simple chat app to showcase the API capabilities of GPT-3.
 
-headers = {
-    'Content-Type': 'application/json',
-    'Authorization': ["OPENAI.API_KEY"]
-}
+""")
 
-data = {
-    "prompt": prompt,
-    "max_tokens": 50,
-    "temperature": 0.7,
-    "top_p": 0.9,
-    "n": 1,
-    "stream": False,
-    "logprobs": None,
-    "stop": "\n"
-}
+user_prompt = st.text_input("Enter your message:")
 
-response = requests.post(url, headers=headers, data=json.dumps(data))
-
-response_json = response.json()
-
-st.write(response_json["choices"][0]["text"])
-
+if st.button("Submit"):
+    response = requests.post(
+        "https://api.openai.com/v1/engines/davinci/completions",
+        data=json.dumps({
+            "prompt": user_prompt,
+            "max_tokens": 50,
+            "temperature": 0.7,
+            "top_p": 0.9,
+        }),
+        headers={
+            "Content-Type": "application/json",
+            "Authorization": "OPENAI.API_KEY",
+        },
+    )
+    response = response.json()
+    st.write(response["choices"][0]["text"])
